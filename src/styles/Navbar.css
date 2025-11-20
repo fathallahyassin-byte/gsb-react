@@ -1,0 +1,30 @@
+nav {
+  padding: 1rem;
+  background-color: #333;
+  color: white;
+}
+nav > div > div > span{
+    
+  display: inline-block;
+  margin-right: 20px;
+
+    font-weight: 700;
+    font-style: bold;
+
+}
+nav > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-right: 1rem;
+}
+
+nav a:last-child {
+  margin-right: 0;
+}
+    

@@ -1,25 +1,39 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Routes , Route, Link } from 'react-router-dom';
+import Login from './pages/Login'
+import Dashboard from './pages/Dashboard'
+import Home from './pages/Home'
+import Navbar from './components/Navbar';
+import { AuthProvider } from './context/AuthContext';
+import PrivateRoute from './components/PrivateRoute';
+import FraisAdd from './pages/FraisAdd';
+import FraisEdit from './pages/FraisEdit';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <BrowserRouter><AuthProvider>
+      <header>
+        <Navbar></Navbar>
       </header>
-    </div>
+
+      {/* Routes de l'application */}
+      
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/frais/ajouter" element={<FraisAdd />} />
+        <Route path="/frais/modifier/:id" element={<FraisEdit />} />
+              <Route 
+        path="/dashboard" 
+        element={
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>}/>
+      </Routes></AuthProvider>
+    </BrowserRouter>
   );
 }
+
 
 export default App;
