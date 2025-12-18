@@ -21,7 +21,7 @@ function Navbar() {
 
         <div>
           {user ? (
-            <button onClick={logoutUser} style={{ color: 'white', background: 'none', border:'none' }}>
+            <button type="logout" onClick={logoutUser} style={{ color: 'white', background: 'none', border:'none' }}>
               Déconnexion
             </button>
           ) : (

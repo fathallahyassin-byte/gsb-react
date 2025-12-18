@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { API_URL, getCurrentUser } from "../services/authService";
 import '../styles/FraisForm.css';
 
@@ -112,6 +112,7 @@ const handleSubmit = async (e) => {
         <button type="submit" disabled={loading}>
           {loading ? (frais ? "Enregistrement..." : "Ajout...") : (frais ? "Enregistrer" : "Ajouter")}
         </button>
+        <Link className="frais-hors-forfait-link" to={`/frais/${idFrais}/hors-forfait`}>Frais hors forfait</Link>
       </form>
     </div>
   );

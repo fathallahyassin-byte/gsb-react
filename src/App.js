@@ -8,6 +8,9 @@ import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
 import FraisAdd from './pages/FraisAdd';
 import FraisEdit from './pages/FraisEdit';
+import FraisHorsForfait from './pages/FraisHorsForfait'
+import FraisHorsForfaitAdd from './pages/FraisHorsForfaitAdd'
+import FraisHorsForfaitEdit from './pages/FraisHorsForfaitEdit'
 
 
 function App() {
@@ -22,8 +25,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/frais/:id/hors-forfait/ajouter" element={<FraisHorsForfaitAdd />} />
         <Route path="/frais/ajouter" element={<FraisAdd />} />
+        <Route path="/frais/:id/hors-forfait/modifier/:idHF" element={<FraisHorsForfaitEdit />} />
         <Route path="/frais/modifier/:id" element={<FraisEdit />} />
+        <Route path="/frais/:id/hors-forfait" element={<FraisHorsForfait />} />
               <Route 
         path="/dashboard" 
         element={

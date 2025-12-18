@@ -13,7 +13,20 @@ function FraisTable() {
   const [filterNonNull, setfilterNonNull]= useState(true);
   const [filterAmount, setFilterAmount] = useState('');
   const threshold = parseFloat(filterAmount);
-  const navigate=useNavigate();
+  const navigate=useNavigate(); 
+  
+  const handleDelete=async(id)=>{
+  if (!window.confirm('Etes-vous sur de vouloir supprimer ce frais ?')) return;
+  try { await axios.delete(`${API_URL}frais/suppr`, 
+    
+    { data : {id_frais : id  }, 
+    headers : {Authorization :`Bearer ${token}` } 
+  } 
+  ); 
+    setFraisList(fraisList.filter((frais) => frais.id_frais !== id)); 
+  } catch (error) { 
+    console.error('Erreur lors de la suppression:', error); } 
+  };
 
   useEffect(() => {
     const fetchFrais = async () => {
@@ -87,6 +100,7 @@ function FraisTable() {
               <th>Date de modification</th>
               <th>Montant Validé</th>
               <th>Action</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -102,7 +116,11 @@ function FraisTable() {
                 <td> <button onClick={() => navigate(`/frais/modifier/${frais.id_frais}`)} 
                 className="edit-button" > 
                 Modifier 
-                </button> 
+                </button></td>
+                <td><button onClick={() => handleDelete(frais.id_frais)} className="delete-button">
+  Supprimer
+</button>
+ 
                 </td>
               </tr>
             ))}
